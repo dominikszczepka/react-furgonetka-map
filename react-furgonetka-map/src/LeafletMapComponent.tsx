@@ -9,6 +9,9 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { Button, createTheme, OutlinedInput, Theme, ThemeProvider } from "@mui/material";
 import styled from "styled-components";
 import "leaflet/dist/leaflet.css";
+import { Position } from "./Position";
+import { MapPoint } from "./MapPoint";
+import { Bounds } from "./Bounds";
 
 const Container = styled.div`    
     display:flex;
@@ -155,25 +158,6 @@ interface InputWindowProps {
   getPoints: (position: Position, bounds: Bounds) => MapPoint[],
   findLocation: (searchPhrase: string) => Position
 };
-
-interface MapPoint {
-  key: string,
-  type: string,
-  name: string,
-  description: string,
-  service: string,
-  geocode: [number, number]
-};
-
-interface Bounds {
-  northEast: Position,
-  southWest: Position
-}
-
-interface Position {
-  latitude: number,
-  longitude: number
-}
 
 const LeafletMap: React.FC<InputWindowProps> = ({
   baseMapPosition = { latitude: 52.22, longitude: 21.02 },
@@ -410,10 +394,6 @@ const LeafletMap: React.FC<InputWindowProps> = ({
       </ContainerMap>
     </Container>
   </ThemeProvider>
-}
-
-LeafletMap.defaultProps = {
-  
 }
 
 export default LeafletMap;
